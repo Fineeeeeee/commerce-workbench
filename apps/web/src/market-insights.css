@@ -1,0 +1,52 @@
+.market-page{display:flex;flex-direction:column}
+.market-insights{order:0}
+.market-page>.section-heading{order:3;margin-top:24px}
+.market-page>.market-opportunities{order:4}
+.evidence-decision{display:flex;flex-direction:column;gap:11px}.evidence-decision>h3,.evidence-decision>p{margin:0}.evidence-decision .decision-head,.representative-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.evidence-decision .decision-head small,.representative-head small{color:var(--muted);font-size:var(--text-caption)}.decision-label{display:inline-block;flex:none;font-size:var(--text-caption);font-weight:600;line-height:1.5;border-radius:4px;padding:2px 6px;margin-right:8px}.decision-label.fact{background:#e7f1ed;color:#356d60}.decision-label.inference{background:#e9eef6;color:#536d90}.decision-label.risk{background:#fff0dc;color:#8a6636}.decision-judgment,.decision-basis,.decision-limit{font-size:var(--text-secondary);line-height:1.7}.decision-facts{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:var(--text-caption);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 0}.decision-facts strong{color:var(--ink)}.decision-basis small{color:var(--muted)}.decision-limit{display:flex;align-items:flex-start}.decision-more{font-size:var(--text-caption);color:var(--muted)}.decision-more p{margin:7px 0}.representative-evidence{border-top:1px solid var(--border);padding-top:12px}.representative-head{margin-bottom:7px}.representative-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:8px 0;border-top:1px solid var(--border);font-size:var(--text-caption)}.representative-row span{min-width:0;overflow-wrap:anywhere}.representative-row small{display:block;color:var(--muted);margin-top:3px}.representative-evidence details summary,.raw-evidence>summary,.other-opportunities>summary{cursor:pointer;color:var(--teal);font-size:var(--text-secondary);font-weight:600}.raw-evidence>summary,.other-opportunities>summary{padding:3px 0}.raw-evidence[open]>summary{margin-bottom:18px}.raw-evidence-actions{display:flex;gap:8px;flex-wrap:wrap}.other-opportunities{margin-top:18px}.other-opportunities>summary{padding:12px 0}.project-evidence-origin{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.project-evidence-origin small{color:var(--muted)}@media(max-width:600px){.evidence-decision .decision-head,.representative-head{align-items:flex-start;flex-direction:column}.decision-limit,.representative-row{flex-direction:column}.opportunity-actions{flex-wrap:wrap}}
+.opportunity-candidates .opportunity-grid{grid-template-columns:minmax(0,1fr)}.opportunity-candidates .evidence-decision{max-width:none}.evidence-role{display:inline-block;margin:5px 0 0;padding:2px 6px;border-radius:4px;background:var(--surface-alt);color:var(--muted);font-size:var(--text-caption)}
+.market-insights .opportunity-grid{gap:16px;grid-template-columns:repeat(3,minmax(0,1fr))}.market-insights .opportunity-card{padding:20px 22px}.opportunity-support{border-top:1px solid var(--border);padding-top:12px;color:var(--muted)}.opportunity-support>summary{cursor:pointer;color:var(--teal);font-size:var(--text-secondary);font-weight:600}.opportunity-support[open]>summary{margin-bottom:16px}.opportunity-support .decision-limit{margin:14px 0}.opportunity-support .representative-evidence{margin-top:16px}.opportunity-card .opportunity-project-actions{margin-top:4px}
+.market-insights .batch-overview>p.muted{font-size:var(--text-caption);line-height:1.5;color:var(--muted)}
+.market-insights .raw-evidence[open]>summary{position:sticky;top:0;z-index:2;background:var(--surface);padding:10px 0;border-bottom:1px solid var(--border)}
+.market-page .analysis-inferences{margin-top:14px;font-size:var(--text-caption)}.market-page .analysis-inferences>summary{cursor:pointer;color:var(--teal);font-weight:600}.market-page .analysis-inferences p{line-height:1.6;margin:9px 0}.market-page .analysis-inferences small{color:var(--muted);margin-left:8px}.market-page .other-opportunity-list{display:flex;flex-direction:column;gap:8px}.market-page .other-opportunity-list .compact-row{display:flex;align-items:center;gap:12px}.market-page .other-opportunity-list .compact-row>div{flex:1;min-width:0}.market-page .other-opportunity-list .compact-row small{display:block;color:var(--muted)}@media(max-width:600px){.market-page .other-opportunity-list .compact-row{flex-wrap:wrap}.market-page .other-opportunity-list .compact-row>button{margin-left:auto}}
+.market-insights .keyword-intelligence-panel { margin:12px 0; }
+.market-insights .keyword-intelligence-panel > summary { cursor:pointer; font-weight:600; }
+.market-insights .keyword-intelligence-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; margin:12px 0; }
+.market-insights .keyword-intelligence-list article { display:grid; gap:4px; padding:10px; border:1px solid var(--border, #dce3e3); border-radius:8px; }
+.market-page .analysis-conclusions>summary{cursor:pointer;font-weight:650;color:var(--teal);padding:4px 0;list-style:none}
+.market-page .analysis-conclusions>summary::-webkit-details-marker{display:none}
+.market-page .analysis-conclusions>summary:after{content:'展开';float:right;font-size:var(--text-caption);color:var(--muted)}
+.market-page .analysis-conclusions[open]>summary:after{content:'收起'}
+.market-page .analysis-conclusions[open]>summary{margin-bottom:16px}
+.market-page .market-select-evidence{margin:4px 0 14px;border-color:#bfcef0;color:var(--teal);background:#f4f8ff}
+.market-page .batch-overview .insight-metrics>div{background:#f4f8ff}
+.market-page .batch-overview .insight-metrics strong{color:var(--ink)}
+.market-page .batch-overview{padding:24px}
+.market-page .batch-overview .section-heading{margin-bottom:6px}
+.market-page .batch-overview .section-heading h2{font-size:18px;margin-bottom:0}
+.market-page .batch-overview .insight-metrics>div{padding:10px 13px}
+.market-page .batch-overview .insight-metrics strong{font-size:22px}
+
+.market-page .market-distribution-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.market-page .market-chart{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px}
+.market-page .market-chart h3{margin:0;font-size:17px}
+.market-page .market-bars{display:grid;gap:15px;margin-top:20px}
+.market-page .market-bar-row{display:grid;grid-template-columns:90px minmax(0,1fr) 42px;gap:12px;align-items:center;font-size:13px}
+.market-page .market-bar-row>span{overflow-wrap:anywhere}
+.market-page .market-bar-row>strong{text-align:right;font-weight:600}
+.market-page .market-bar-track{height:12px;background:#edf3fc;border-radius:4px;overflow:hidden}
+.market-page .market-bar-track i{display:block;height:100%;background:#4789f7;border-radius:4px}
+.market-page .batch-scope{font-size:13px;color:var(--muted);margin:10px 0 18px}
+.market-page .batch-scope summary{cursor:pointer}
+.market-page .batch-scope p{max-width:90ch;line-height:1.6}
+.market-page .batch-next-action{align-items:center;border-left:0;border-radius:8px;padding:10px 14px;margin-top:16px}
+.market-page .batch-next-action button{white-space:nowrap}
+.market-page .opportunity-candidates{scroll-margin-top:90px}
+.market-page .opportunity-candidates .decision-head{align-items:flex-start;flex-wrap:wrap;gap:8px}
+.market-page .opportunity-card h3{font-size:17px;line-height:1.5}
+.market-page .opportunity-card .decision-judgment{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.65;font-size:13px}
+.market-page .opportunity-detail-trigger{align-self:flex-start;margin-top:auto;padding-left:0}
+.market-page .opportunity-project-actions:empty{display:none}
+.opportunity-evidence-modal .opportunity-support{color:var(--ink)}
+@media(max-width:1100px){.market-insights .opportunity-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:768px){.market-page .market-distribution-grid{grid-template-columns:1fr}.market-workbench .market-insight-section,.market-page .market-chart{padding:20px}.market-page .batch-overview .section-heading{align-items:flex-start;flex-wrap:wrap}.market-page .batch-next-action{flex-wrap:wrap}.market-insights .opportunity-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.market-page .batch-overview .insight-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.market-workbench .market-insight-section,.market-page .market-chart{padding:16px}.market-page .market-bar-row{grid-template-columns:72px minmax(0,1fr) 38px;gap:8px}}

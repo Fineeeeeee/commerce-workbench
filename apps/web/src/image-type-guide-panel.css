@@ -1,0 +1,9 @@
+.visual-guide-panel .image-type-guide-panel { max-width: 900px; }
+.visual-guide-panel .image-type-guide-panel dl { display: grid; gap: 12px; margin: 20px 0; }
+.visual-guide-panel .image-type-guide-panel dl > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; }
+.visual-guide-panel .image-type-guide-panel dt { color: var(--text-muted, #64748b); }
+.visual-guide-panel .image-type-guide-panel dd { margin: 0; overflow-wrap: anywhere; }
+.visual-guide-panel .image-type-guide-panel form { display: grid; gap: 12px; }
+.visual-guide-panel .image-type-guide-panel label { display: grid; gap: 6px; }
+.visual-guide-panel .image-type-guide-panel textarea { width: 100%; min-height: 70px; }
+@media(max-width: 600px) { .visual-guide-panel .image-type-guide-panel dl > div { grid-template-columns: 1fr; gap: 4px; } }

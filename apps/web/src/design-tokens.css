@@ -1,0 +1,34 @@
+.ui-foundation {
+  --ui-surface: #fff;
+  --ui-background: #f4f7fb;
+  --ui-border: #dce3ed;
+  --ui-text: #172b4d;
+  --ui-muted: #58677e;
+  --ui-primary: #1762dc;
+  --ui-primary-hover: #124fb4;
+  --ui-neutral: #536174;
+  --ui-neutral-bg: #f0f3f7;
+  --ui-action: #9a5100;
+  --ui-action-bg: #fff3df;
+  --ui-running: #1858b6;
+  --ui-running-bg: #eaf2ff;
+  --ui-confirmed: #496859;
+  --ui-confirmed-bg: #eef4f0;
+  --ui-error: #b42332;
+  --ui-error-bg: #fff0f1;
+  --ui-ai: #654ba0;
+  --ui-ai-bg: #f3effa;
+  --ui-font-sm: 12px;
+  --ui-font-base: 14px;
+  --ui-font-title: 24px;
+  --ui-space-1: 4px;
+  --ui-space-2: 8px;
+  --ui-space-3: 12px;
+  --ui-space-4: 16px;
+  --ui-space-5: 24px;
+  --ui-space-6: 32px;
+  --ui-radius-sm: 4px;
+  --ui-radius: 8px;
+  --ui-radius-pill: 999px;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+}

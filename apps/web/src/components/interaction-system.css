@@ -1,0 +1,85 @@
+/* Shared shell and feedback rules; business pages keep their own layout. */
+.app-shell{--surface:#fff;--surface-alt:#f5f7fb;--muted:#59697d;--border:#e2e8f0;--r-md:8px;--r-sm:8px;background:#f4f6fa;color:#172b46}
+:root{--shadow-card:0 1px 2px rgba(0,0,0,.05)}
+.app-shell .card{border-radius:8px;box-shadow:var(--shadow-card)}
+.app-shell .business-overview .focus-project-main,.app-shell .business-overview .focus-project-stages,.app-shell .business-overview .reference-metrics article,.app-shell .business-overview .work-queue-primary,.app-shell .business-overview .work-queue-next{box-shadow:var(--shadow-card)}
+.app-shell .card.work-queue-advice,.app-shell .card.work-queue-ask,.app-shell .card.work-queue-activity{box-shadow:var(--shadow-card)}
+.app-shell button.primary,.app-shell a.button.primary{background:#1764e8;border-color:#1764e8;color:#fff}
+.app-shell button.primary:hover{background:#1254c5;border-color:#1254c5}
+.app-shell button.text-button{color:#1859bc;background:transparent;border-color:transparent;box-shadow:none}
+.app-shell .sidebar .nav-item{position:relative;border-radius:8px;margin:4px 0;min-height:44px}
+.app-shell .sidebar .nav-item.active{background:#e9f1ff;color:#145dcc;font-weight:600}
+.app-shell .sidebar .nav-item.active::before{content:'';position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:3px;background:#1764e8}
+.app-shell .mobile-nav-button{display:none}
+.app-shell .nav-scrim{display:none}
+.workspace-skeleton{padding:28px;display:grid;gap:24px}
+.skeleton-heading{height:30px;width:35%;background:#e6ebf2;border-radius:8px}
+.skeleton-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.skeleton-body{display:grid;grid-template-columns:2fr 1fr;gap:20px;min-height:280px}
+.block-skeleton{border:0;background:white;box-shadow:0 2px 8px #243a570a}
+.block-skeleton span{background:linear-gradient(100deg,#edf1f7 25%,#f8faff 50%,#edf1f7 75%);background-size:200% 100%;animation:skeleton-wave 1.8s ease-in-out infinite}
+.empty-state{min-height:160px;padding:24px;box-shadow:none}
+.empty-illustration{display:inline-flex;align-items:center;justify-content:center;width:64px;height:56px;color:#6c8ab7;background:#edf3fc;border-radius:18px;margin-bottom:8px}
+.empty-state h2{font-size:17px;margin:8px 0}.empty-state p{max-width:420px;color:var(--muted);margin:8px auto 16px}
+.app-shell .breadcrumbs{min-width:0;overflow:hidden}.app-shell .breadcrumbs button,.app-shell .breadcrumbs strong{max-width:220px;overflow:hidden;text-overflow:ellipsis}
+.command-results button:focus-visible{background:#edf3ff;outline:2px solid #1764e8;outline-offset:1px}
+.app-shell .task-progress{width:100%;height:6px;accent-color:#1764e8}
+.history-row{overflow-wrap:anywhere}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@keyframes skeleton-wave{to{background-position:-200% 0}}
+@media(min-width:1024px) and (max-width:1199px){.app-shell .sidebar{width:76px;padding:16px 10px}.app-shell .sidebar .nav-item span,.app-shell .workspace-label{display:none}.app-shell .sidebar .nav-item{justify-content:center}.app-shell .main-shell{margin-left:76px;width:calc(100% - 76px)}}
+@media(max-width:1023px){.app-shell .sidebar{display:block;position:fixed;inset:0 auto 0 0;width:232px;height:100dvh;z-index:120;background:#fff;padding:24px 16px;transform:translateX(-100%);transition:transform .18s}.app-shell.nav-open .sidebar{transform:translateX(0)}.app-shell .sidebar .nav-item span{display:inline}.app-shell .sidebar .nav-item{justify-content:flex-start;width:100%}.app-shell .main-shell{margin-left:0;width:100%;padding-bottom:0}.app-shell .mobile-nav-button{display:inline-flex;flex-shrink:0}.app-shell.nav-open .nav-scrim{display:block;position:fixed;inset:0;background:#172b4650;border:0;border-radius:0;z-index:110}.app-shell .topbar{gap:12px;padding:0 16px}.skeleton-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.skeleton-body{grid-template-columns:1fr}.workspace-skeleton{padding:20px}.app-shell .shell-brand{min-width:0}.app-shell .shell-brand strong{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.block-skeleton span{animation:none}.app-shell .sidebar{transition:none}}
+
+.overlay{--muted:#59697d;--r-md:8px;--r-sm:8px}
+.app-shell .sidebar .nav-item:not(.active),.app-shell .muted,.app-shell .eyebrow,.app-shell .workspace-label,.app-shell label>span{color:#59697d}
+.confirmation-edit-feedback{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;color:#59697d;font-size:13px}
+
+/* Explanations are opt-in; the portal prevents cards and drawers from clipping help. */
+.help-hint { display:inline-flex; vertical-align:middle; }
+.help-hint .help-hint-trigger { display:inline-flex; align-items:center; justify-content:center; padding:3px; min-height:24px; min-width:24px; border:0; background:transparent; color:#59697d; border-radius:4px; }
+.help-hint .help-hint-trigger:hover,.help-hint .help-hint-trigger:focus-visible { color:#1768ee; background:#edf4ff; }
+.help-hint-popup { position:fixed; z-index:10000; padding:10px 12px; border:1px solid #dce4ee; border-radius:8px; background:white; color:#40516a; box-shadow:0 8px 24px #18314b20; font-size:13px; line-height:1.65; font-weight:400; pointer-events:none; }
+
+/* One content frame across workspaces; column count follows the task, not page gutters. */
+.app-shell { --workspace-content-width:1440px; --page-gutter:var(--sp-5); --section-gap:var(--sp-4); --card-padding:var(--sp-4); }
+.app-shell .main-shell>.standard-page,.app-shell .main-shell>.studio-view { width:calc(100% - var(--page-gutter)*2); max-width:var(--workspace-content-width); margin:var(--sp-4) auto; }
+.app-shell .studio-view>.page-heading,.app-shell .studio-view>.studio-tabs,.app-shell .studio-view>.studio-context,.app-shell .studio-view>.kit-toolbar,.app-shell .studio-view>.studio-grid { margin-left:0; margin-right:0; }
+.app-shell .studio-view>.page-heading { margin-top:0; }
+.app-shell .studio-view .content-workflow { margin-left:0; margin-right:0; }
+.app-shell .section-block,.app-shell .product-details,.app-shell .settings-group { padding:var(--card-padding); }
+.app-shell .reference-metrics,.app-shell .focus-project { gap:var(--section-gap); }
+.app-shell .reference-metrics article,.app-shell .focus-project-main,.app-shell .focus-project-stages { padding:var(--card-padding); }
+.product-project-page .project-my-tasks { padding:var(--card-padding); }
+.product-project-page .project-my-tasks>summary { cursor:pointer; font-weight:600; }
+.product-project-page .project-my-tasks>summary small { font-weight:400; color:var(--muted); margin-left:8px; }
+.product-project-page .project-layout.project-list-mode:has(.project-my-tasks:not([open])) { grid-template-columns:minmax(0,1fr) 170px; }
+.product-project-page .project-next-summary { display:block; width:170px; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.product-project-page .reference-project-table td { padding-top:var(--sp-3); padding-bottom:var(--sp-3); }
+.product-project-page .reference-project-table td:last-child button { white-space:nowrap; }
+.product-project-page .project-stage-workspace button.done strong { color:var(--success-ink); }
+.product-project-page .project-stage-workspace button.done small { color:var(--muted); }
+.product-project-page .project-stage-workspace button.future strong,.product-project-page .project-stage-workspace button.future small { color:var(--ink-soft,#526174); font-weight:400; opacity:1; }
+.product-project-page .project-stage-workspace button.current strong { color:var(--teal); font-weight:700; }
+.business-overview .focus-project-stages li { position:relative; min-height:30px; align-items:center; }
+.business-overview .focus-project-stages li:not(:last-child)::after { content:''; position:absolute; left:6px; width:2px; top:22px; height:24px; background:var(--border); }
+.business-overview .focus-project-stages li.done::after { background:var(--success-ink); }
+.business-overview .focus-project-stages li>span { display:grid; place-items:center; width:14px; height:14px; flex:none; font-size:13px; z-index:1; }
+.business-overview .focus-project-stages li.done { color:var(--success-ink); }
+.business-overview .focus-project-stages li.done>span { background:var(--success-ink); color:white; }
+.business-overview .focus-project-stages li.current>span { background:var(--teal); box-shadow:0 0 0 4px #e6f0ff; }
+.business-overview .focus-project-stages li.future { color:var(--muted); }
+.market-research-panel .research-stage-track { grid-template-columns:repeat(7,minmax(0,1fr)); gap:var(--sp-3); padding-top:var(--sp-4); }
+.market-research-panel .research-stage-track li { flex-direction:column; align-items:center; text-align:center; gap:var(--sp-2); font-size:13px; line-height:1.5; }
+.market-research-panel .research-stage-track li span { width:30px; height:30px; }
+.studio-view .studio-context { grid-template-columns:minmax(240px,1.1fr) minmax(0,2fr) auto; gap:var(--sp-4); padding:var(--card-padding); }
+.studio-view .studio-context .studio-product-name { font-size:17px; line-height:1.5; }
+.studio-view .studio-context dl { grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--sp-2) var(--sp-4); }
+.studio-view .studio-context .context-kit { grid-column:1/-1; grid-row:1; }
+.studio-view .studio-context .studio-kit-name { font-size:16px; font-weight:600; }
+.studio-view .studio-context .context-secondary dt,.studio-view .studio-context .context-secondary dd { color:var(--muted); font-size:13px; }
+@media(max-width:1199px) { .app-shell { --page-gutter:var(--sp-4); } .studio-view .studio-context { grid-template-columns:1fr 1.5fr; } .studio-view .studio-context>.text-button { grid-column:1/-1; margin-top:0; } .market-research-panel .research-stage-track { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media(max-width:768px) { .app-shell { --page-gutter:var(--sp-3); --card-padding:var(--sp-3); --section-gap:var(--sp-3); } .business-overview .focus-project-stages ol { grid-template-columns:1fr; } .studio-view .studio-context { grid-template-columns:1fr; } .studio-view .studio-context>.text-button { justify-self:start; } .product-project-page .project-layout.project-list-mode:has(.project-my-tasks:not([open])) { grid-template-columns:1fr; } }
+@media(max-width:480px) { .market-research-panel .research-stage-track { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+
+.queue-overdue { display:inline-block; color:#a42424; background:#fff0f0; padding:3px 8px; border-radius:6px; font-size:13px; margin-top:6px; font-weight:600; }

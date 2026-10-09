@@ -1,0 +1,3 @@
+.error-banner{position:fixed;top:calc(var(--topbar-h) + var(--sp-1));left:calc(var(--sidebar-w) + var(--sp-4));right:24px;margin:0;z-index:var(--z-banner);max-height:40vh;overflow:auto;box-shadow:var(--shadow-2)}
+@media(max-width:900px){.error-banner{left:90px;right:16px}}
+@media(max-width:700px){.error-banner{top:65px;left:86px;right:12px;font-size:var(--text-caption)}}

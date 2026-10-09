@@ -1,0 +1,33 @@
+node_modules/
+dist/
+.runtime/
+.env
+.env.*
+!.env.example
+*.log
+*.tsbuildinfo
+
+# Local databases, backups and generated workbench data
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+before-*.sqlite
+
+# Local validation outputs and visual inspection artifacts
+/*.png
+/*.jpg
+/*.jpeg
+/*.zip
+/*.jsonl
+batch*.py
+select-hotfix*.py
+reference-*.py
+finish-*.py
+fix-*.py
+frontend-*.py
+market-*.py
+visual-*.py
+wire-*.py
+*-audit*.mjs
+*-check*.mjs

@@ -1,0 +1,11 @@
+.market-learning-panel { padding:var(--card-padding,var(--sp-4)); }
+.market-learning-panel header { display:flex; align-items:center; justify-content:space-between; gap:var(--sp-3); }
+.market-learning-panel header label { display:flex; gap:var(--sp-2); align-items:center; }
+.market-learning-panel .learning-conclusion { font-weight:600; }
+.market-learning-panel .learning-table-wrap { overflow:auto; }
+.market-learning-panel table { width:100%; border-collapse:collapse; font-size:13px; }
+.market-learning-panel th,.market-learning-panel td { text-align:left; padding:var(--sp-2); border-bottom:1px solid var(--line); }
+.market-learning-panel td small { display:block; color:var(--muted); }
+.market-learning-panel article { padding:var(--sp-3) 0; border-bottom:1px solid var(--line); }
+.market-learning-panel .learning-memory-actions { display:flex; flex-wrap:wrap; gap:var(--sp-2); margin-bottom:var(--sp-2); }
+@media(max-width:768px){.market-learning-panel header{align-items:flex-start;flex-direction:column;}}

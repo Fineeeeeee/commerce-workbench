@@ -1,0 +1,22 @@
+.sidebar>nav[aria-label="主导航"]{display:flex;flex-direction:column;gap:6px;flex:1;min-height:0;overflow-y:auto;align-items:stretch}
+.sidebar>nav .workspace-label{margin-bottom:8px}
+.nav-secondary-group{border-top:1px solid var(--border);margin-top:14px;padding-top:13px}
+.nav-group-toggle{color:var(--teal)}
+.nav-group-toggle>svg:last-child{margin-left:auto;transition:transform .15s}
+.nav-group-toggle>svg:last-child.expanded{transform:rotate(180deg)}
+.nav-secondary-links{display:grid;gap:3px;margin-left:11px;padding-left:9px;border-left:1px solid var(--border)}
+.nav-secondary-links .nav-item{font-size:var(--text-secondary);padding:10px 11px}
+.breadcrumbs button{background:transparent;border:0;color:inherit;padding:0;font-size:inherit}
+.breadcrumbs button:hover{background:transparent;color:var(--teal);border:0}
+.breadcrumbs strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.business-path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.business-path button{min-width:0;justify-content:space-between;text-align:left;padding:15px 16px;background:var(--surface);border-color:var(--border);font-weight:600;color:var(--teal)}
+.business-path button span{min-width:0;white-space:normal}
+.business-path button svg{flex:none}
+.studio-return-context{display:flex;align-items:center;gap:14px;margin:20px 36px 12px;padding:10px 14px;background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r-md);color:var(--muted);font-size:var(--text-secondary)}
+.studio-return-context button{padding:5px 0;border:0;background:transparent;color:var(--teal);font-weight:600}
+.studio-return-context button:hover{background:transparent;border:0}
+.studio-return-context span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:900px){.nav-secondary-links{margin-left:0;padding-left:0;border-left:0}.nav-group-toggle>svg:last-child{display:none}.nav-secondary-links .nav-item{padding:12px}.business-path{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.studio-return-context{margin:16px 16px 10px}}
+@media(max-width:600px){.business-path{grid-template-columns:1fr}.studio-return-context{align-items:flex-start;flex-direction:column;gap:2px}.studio-return-context span{white-space:normal}}

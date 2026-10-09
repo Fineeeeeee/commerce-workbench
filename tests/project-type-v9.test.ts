@@ -1,0 +1,57 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { DatabaseSync } from 'node:sqlite';
+import { mkdtempSync, readdirSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { createApp } from '../apps/server/app.js';
+import { migrateProjectTypeV9 } from '../apps/server/project-type-migration.js';
+
+test('V9 migration backs up V8 and leaves historical project identity and type untouched', () => {
+  const directory = mkdtempSync(join(tmpdir(), 'project-type-v9-'));
+  const db = new DatabaseSync(join(directory, 'workbench.sqlite'));
+  db.exec(`CREATE TABLE product_projects (id TEXT PRIMARY KEY, name TEXT NOT NULL) STRICT;
+    INSERT INTO product_projects VALUES ('legacy-project', '历史项目');
+    PRAGMA user_version=8;`);
+  migrateProjectTypeV9(db, directory);
+  assert.equal(db.prepare('PRAGMA user_version').get()!.user_version, 9);
+  const migrated = db.prepare('SELECT id,project_type FROM product_projects').get()!;
+  assert.equal(migrated.id, 'legacy-project');
+  assert.equal(migrated.project_type, null);
+  assert.throws(() => db.prepare("UPDATE product_projects SET project_type='CONTENT_PRODUCTION'").run());
+  assert.deepEqual(db.prepare('PRAGMA foreign_key_check').all(), []);
+  const backupName = readdirSync(directory).find(name => name.startsWith('before-project-type-v9-'));
+  assert.ok(backupName);
+  const backup = new DatabaseSync(join(directory, backupName));
+  assert.equal(backup.prepare('PRAGMA user_version').get()!.user_version, 8);
+  assert.equal(backup.prepare('SELECT id FROM product_projects').get()!.id, 'legacy-project');
+  backup.close(); db.close();
+});
+
+test('project creation requires explicit type and first historical confirmation is recorded once', async t => {
+  const directory = mkdtempSync(join(tmpdir(), 'project-type-api-'));
+  const { app, store } = await createApp(directory);
+  t.after(() => app.close());
+  const headers = { host: '127.0.0.1:4380', origin: 'http://127.0.0.1:4380' };
+  const category = store.db.prepare("SELECT id FROM categories WHERE code='shampoo'").get()!;
+  const input = { categoryId: category.id, name: '项目性质测试', objective: '', positioning: '', constraints: [], notes: '' };
+  assert.equal((await app.inject({ method: 'POST', url: '/api/product-projects', headers, payload: input })).statusCode, 400);
+  const created = await app.inject({ method: 'POST', url: '/api/product-projects', headers, payload: { ...input, projectType: 'EXISTING_PRODUCT' } });
+  assert.equal(created.statusCode, 201, created.body);
+  const id = created.json().project.id as string;
+  assert.equal(created.json().project.projectType, 'EXISTING_PRODUCT');
+  store.db.prepare('UPDATE product_projects SET project_type=NULL WHERE id=?').run(id);
+  const before = await app.inject({ method: 'GET', url: `/api/product-projects/${id}`, headers });
+  const project = before.json().project;
+  assert.equal(project.projectType, null);
+  const payload = { expectedUpdatedAt: project.updatedAt, status: project.status, data: { ...input, projectType: 'NEW_PRODUCT' }, checklist: project.checklist, note: '确认项目性质' };
+  const confirmed = await app.inject({ method: 'PUT', url: `/api/product-projects/${id}`, headers, payload });
+  assert.equal(confirmed.statusCode, 200, confirmed.body);
+  assert.equal(confirmed.json().project.projectType, 'NEW_PRODUCT');
+  assert.equal(confirmed.json().events.filter((event: { eventType: string }) => event.eventType === 'PROJECT_TYPE_CONFIRMED').length, 1);
+  const repeated = await app.inject({ method: 'PUT', url: `/api/product-projects/${id}`, headers, payload: { ...payload, expectedUpdatedAt: confirmed.json().project.updatedAt } });
+  assert.equal(repeated.statusCode, 200, repeated.body);
+  assert.equal(repeated.json().events.filter((event: { eventType: string }) => event.eventType === 'PROJECT_TYPE_CONFIRMED').length, 1);
+  const cleared = await app.inject({ method: 'PUT', url: `/api/product-projects/${id}`, headers, payload: { ...payload, expectedUpdatedAt: repeated.json().project.updatedAt, data: { ...input, projectType: null } } });
+  assert.equal(cleared.statusCode, 409);
+});
